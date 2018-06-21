@@ -21,10 +21,11 @@ router.post('/botHandler',function(req, res){
 			};
 			auth0.passwordless.sendSMS(data, function (err, dat) {
 			  if (err) {
+				  console.log('err',err);
 				  res.json(simpleResponse(response, JSON.stringify(err))).end();
 				// Handle error.
 			  }else{
-				  console.log(dat);
+				  console.log('res',dat);
 				  res.json(simpleResponse(response, "Verification Code sent to your mobile number.\r\nPlease enter verification code")).end();
 			  }
 			});
