@@ -14,7 +14,7 @@ router.post('/botHandler',function(req, res){
 	console.log(JSON.stringify(req.body));
 		console.log(req.body.queryResult.parameters.empid);		
 		var data = {
-			phone_number: '+918500050085'
+			phone_number: '+917200050085'
 		};
 
 		auth0.passwordless.sendSMS(data, function (err) {
