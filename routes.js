@@ -12,8 +12,7 @@ var auth0 = new AuthenticationClient({
 
 router.post('/botHandler',function(req, res){
 	console.log(JSON.stringify(req.body));
-		console.log(req.body.queryResult.parameters.empid);
-		console.log(req.body.queryResult.parameters.phone);
+		console.log(req.body.queryResult.parameters.empid);		
 		var data = {
 			phone_number: '+918500050085'
 		};
@@ -22,7 +21,7 @@ router.post('/botHandler',function(req, res){
 		  if (err) {
 			// Handle error.
 		  }else{
-			  
+			  console.log(data);
 		  }
 		});
 })
