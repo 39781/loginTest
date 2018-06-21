@@ -17,7 +17,7 @@ router.post('/botHandler',function(req, res){
 		console.log(req.body.queryResult.parameters.empid);		
 		if(req.body.queryResult.action == 'input.welcome'){
 			var data = {
-				phone_number: '+917200050085'
+				phone_number: '+918500050085'
 			};
 			auth0.passwordless.sendSMS(data, function (err, dat) {
 			  if (err) {
@@ -32,7 +32,7 @@ router.post('/botHandler',function(req, res){
 		}
 		if(req.body.queryResult.action == 'input.verifyOtp'){
 			var data = {
-			  username: '+917200050085',
+			  username: '+918500050085',
 			  password: req.body.queryResult.queryText
 			};
 
