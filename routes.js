@@ -15,7 +15,7 @@ router.post('/botHandler',function(req, res){
 		console.log(req.body.queryResult.parameters.empid);
 		console.log(req.body.queryResult.parameters.phone);
 		var data = {
-			phone_number: '+91'+req.body.queryResult.parameters.phone
+			phone_number: '+918500050085'
 		};
 
 		auth0.passwordless.sendSMS(data, function (err) {
@@ -30,7 +30,7 @@ router.post('/botHandler',function(req, res){
 
 
 var data = {
-  username: '8500050085',
+  username: '+918500050085',
   password: '{VERIFICATION_CODE}'
 };
 
