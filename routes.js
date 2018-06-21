@@ -14,19 +14,20 @@ router.post('/botHandler',function(req, res){
 	console.log(JSON.stringify(req.body));
 		console.log(req.body.queryResult.parameters.empid);
 		console.log(req.body.queryResult.parameters.phone);
+		var data = {
+			phone_number: '+91'+req.body.queryResult.parameters.phone
+		};
+
+		auth0.passwordless.sendSMS(data, function (err) {
+		  if (err) {
+			// Handle error.
+		  }else{
+			  
+		  }
+		});
 })
 
-var data = {
-  phone_number: '8500050085'
-};
 
-auth0.passwordless.sendSMS(data, function (err) {
-  if (err) {
-    // Handle error.
-  }else{
-	  
-  }
-});
 
 var data = {
   username: '8500050085',
