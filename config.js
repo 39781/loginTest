@@ -1,25 +1,21 @@
-module.exports = {
-	fare:{
-		che:{
-			hyd:{
-				dist:"300km",
-				exp:{
-					fare:250
+module.exports = {	
+	responseObj:{
+		"conversationToken": "",
+		"expectUserResponse": true,
+		"expectedInputs": [
+			{
+				"inputPrompt": {
+					"richInitialPrompt": {
+						"items": [],
+						"suggestions": []								
+					}
 				},
-				del:{
-					fare:400
-				},
-				"vol-ac":{
-					fare:800
-				},
-				"vol-nonac":{
-					fare:600
-				},
-				"sleeper":{
-					fare:1050
-				}				
+				"possibleIntents": [
+					{
+						"intent": "actions.intent.TEXT"
+					}
+				]
 			}
-		}
-	}
+		]
+	}	
 }
-
