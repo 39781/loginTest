@@ -17,7 +17,8 @@ router.post('/botHandler',function(req, res){
 		console.log('empid',req.body.queryResult.parameters.empid);		
 		console.log('query text',req.body.queryResult.queryText);
 		console.log('action',req.body.queryResult.action);
-		if(req.body.queryResult.action == 'input.welcome'){
+		res.json(response).end();
+		/*if(req.body.queryResult.action == 'input.welcome'){
 			var data = {
 				phone_number: '+917200050085'
 			};
@@ -45,7 +46,7 @@ router.post('/botHandler',function(req, res){
 				  console.log(dat);
 			  }
 			});
-		}
+		}*/
 })
 
 
