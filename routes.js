@@ -26,7 +26,7 @@ router.post('/validateOtp',function(req, res){
 	if(Otps[req.body.token]==req.body.otp){
 		
 		res.status(200);
-		res.redirect('/close');
+		res.json({status:true}).end();
 	}else{
 		res.status(400);
 		res.json({status:false}).end();	
