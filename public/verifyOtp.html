@@ -158,8 +158,8 @@ function validateOtp() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {					
-				alert('hari');
-			history.go(-2);
+				window.parent.close();
+			history.go(-1);
 			
 		}else{
 			document.getElementById("status").value = "invalid OTP, Please enter valid OTP";
