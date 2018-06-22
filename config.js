@@ -1,19 +1,19 @@
 module.exports = {	
 	responseObj: {
-  "payload": {
-    "google": {
-      "expectUserResponse": true,
-      "richResponse": {
-        "items": [
-          {
-            "simpleResponse": {
-              "textToSpeech": "this is a simple response"
-            }
-          }
-        ]
-      }
-    }
-  }
-}
+	  "payload": {
+		"google": {
+		  "expectUserResponse": true,
+		  "richResponse": {
+			"items": [
+			  {
+				"simpleResponse": {
+				  "textToSpeech": "this is a simple response"
+				}
+			  }
+			]
+		  }
+		}
+	  }
+	}
 }
 

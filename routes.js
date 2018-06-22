@@ -17,8 +17,8 @@ router.post('/botHandler',function(req, res){
 		console.log('empid',req.body.queryResult.parameters.empid);		
 		console.log('query text',req.body.queryResult.queryText);
 		console.log('action',req.body.queryResult.action);
-		res.json(response).end();
-		/*if(req.body.queryResult.action == 'input.welcome'){
+		
+		if(req.body.queryResult.action == 'input.welcome'){
 			var data = {
 				phone_number: '+917200050085'
 			};
@@ -46,7 +46,7 @@ router.post('/botHandler',function(req, res){
 				  console.log(dat);
 			  }
 			});
-		}*/
+		}
 })
 
 
@@ -54,13 +54,12 @@ router.post('/botHandler',function(req, res){
 
 
 var simpleResponse = function(response, responseText){
-	response.expectedInputs[0].inputPrompt.richInitialPrompt.items.push({
+	response.payload.google.richResponse.items.push({
 		"simpleResponse": {
 			"textToSpeech": responseText,
 			"displayText": responseText
 		}
-	});	
-	console.log(JSON.stringify(response));
+	});		
 	return response;
 }
 
