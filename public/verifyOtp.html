@@ -159,7 +159,7 @@ function validateOtp() {
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {					
 				alert('hari');
-			window.history.go(-1);
+			history.go(-2);
 			
 		}else{
 			document.getElementById("status").value = "invalid OTP, Please enter valid OTP";
