@@ -17,43 +17,56 @@ router.post('/botHandler',function(req, res){
 		console.log('empid',req.body.queryResult.parameters.empid);		
 		console.log('query text',req.body.queryResult.queryText);
 		console.log('action',req.body.queryResult.action);
-		
-		if(req.body.queryResult.action == 'input.welcome'){
-			var data = {
-				phone_number: '+917200050085'
-			};
-			return auth0.passwordless.sendSMS(data, function (err, dat) {
-			  if (err) {
-				  console.log('err',err);
-				  res.json(simpleResponse(response, JSON.stringify(err))).end();
-				// Handle error.
-			  }else{
-				  console.log('res',dat);
-				  res.json(simpleResponse(response, "Verification Code sent to your mobile number.\r\nPlease enter verification code")).end();
-			  }
-			});
+		switch(req.body.queryResult.action){
+			case 'input.welcome':func = welcome;break;
+			case 'input.verifyOtp':func = verifyOtp;break;
 		}
-		if(req.body.queryResult.action == 'input.verifyOtp'){
-			console.log('token vertifying');
-			var data = {
-			  username: '+917200050085',
-			  password: req.body.queryResult.queryText
-			};
-
-			auth0.passwordless.signIn(data, function (err,dat) {
-			  if (err) {
-				  console.log(err);
-				// Handle error.
-			  }else{
-				  console.log(dat);
-			  }
-			});
-		}
+		func(req.body)
+		.then(function(reply){
+			res.json(reply).end();
+		})
+		.catch(function(err){
+			res.json(err).end();
+		})
 })
 
 
+var welcome = function(request){
+	return new Promise(function(resolve, reject){
+		var data = {
+			phone_number: '+917200050085'
+		};
+		auth0.passwordless.sendSMS(data, function (err, dat) {
+		  if (err) {
+			  console.log('err',err);
+			  reject(simpleResponse(response, JSON.stringify(err)));
+			// Handle error.
+		  }else{
+			  console.log('res',dat);
+			  resolve(simpleResponse(response, "Verification Code sent to your mobile number.\r\nPlease enter verification code"));
+		  }
+		});
+	});
+}
 
+var verifyOtp = function(request){
+	return new Promise(function(resolve, reject){
+		console.log('token vertifying');
+		var data = {
+		  username:'+7200050085',
+		  password: request.queryResult.queryText
+		};
 
+		auth0.passwordless.signIn(data, function (err,dat) {
+		  if (err) {
+			  console.log(err);
+			// Handle error.
+		  }else{
+			  console.log(dat);
+		  }
+		});
+	});
+}
 
 var simpleResponse = function(response, responseText){
 	response.payload.google.richResponse.items.push({
