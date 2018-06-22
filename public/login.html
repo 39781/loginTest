@@ -164,7 +164,8 @@ function validateLogin() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {		
-			window.close();
+			console.log(this.responseText);
+			window.location.href = JSON.parse(this.responseText).url;
 		}else{
 			document.getElementById("status").value = "invalid username/password";
 		}

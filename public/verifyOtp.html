@@ -153,21 +153,25 @@ span.psw {
 
 <script>
 
-
 function validateOtp() {
+
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {		
+		if (this.readyState == 4 && this.status == 200) {					
 			window.close();
 		}else{
 			document.getElementById("status").value = "invalid OTP, Please enter valid OTP";
 			document.getElementById("otp").value="";
 		}
 	};
+	
+	var tkn = window.location.href.split("=")[1];
+	tkn = tkn.replace('TKN',"");
+	tkn = tkn.split("").reverse().join("");
+	var otp = document.getElementById('otp').value;
 	xmlhttp.open("POST", "/validateOtp");
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
-	xmlhttp.send(JSON.stringify({otp:document.getElementById('otp').value}));
-	xmlhttp.send();
+	xmlhttp.send(JSON.stringify({token:tkn,"otp":otp}));	
 }
 </script>
 

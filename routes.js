@@ -6,6 +6,7 @@ var config			= require('./config.js');
 var path			= require("path");	
 
 var Otps ={};
+
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
 	if(typeof(emps[req.body.username])!='undefined'){
@@ -13,18 +14,14 @@ router.post('/validateUser',function(req, res){
 		smsApi = smsApi.replace('Otpnumber',45627);
 		Otps[emps[req.body.username]] = 45627;
 		console.log(smsApi,emps[req.body.username]);
-		request(smsApi, function (error, response, body) {
-			console.log(body);						 
-			res.sendFile(path.join(__dirname, '../public', 'verifyOtp.html?token=TKN'+emps[req.body.username].split("").reverse().join("")));			
-		});	
-	}else{
-		res.status(400);
-		res.json({status:false}).end();
-	}		
+		res.status(200);
+			res.json({url:'verifyOtp.html?token=TKN'+emps[req.body.username].split("").reverse().join("")}).end();
+	}	
 });
 
 router.post('/validateOtp',function(req, res){
-	if(Otps[req.body.phone]==req.body.otp){
+	console.log(req.body);
+	if(Otps[req.body.token]==req.body.otp){
 		res.status(200);
 		res.json({status:true}).end();	
 	}else{
