@@ -12,7 +12,7 @@ var auth0 = new AuthenticationClient({
 });
 
 router.post('/botHandler',function(req, res){
-	//console.log(JSON.stringify(req.body));
+		console.log(JSON.stringify(req.body));
 		var response = JSON.parse(JSON.stringify(config.responseObj));
 		console.log('empid',req.body.queryResult.parameters.empid);		
 		console.log('query text',req.body.queryResult.queryText);
@@ -34,6 +34,7 @@ router.post('/botHandler',function(req, res){
 			});
 		}
 		if(req.body.queryResult.action == 'input.verifyOtp'){
+			console.log('token vertifying');
 			var data = {
 			  username: '+917200050085',
 			  password: req.body.queryResult.queryText
@@ -41,6 +42,7 @@ router.post('/botHandler',function(req, res){
 
 			auth0.passwordless.signIn(data, function (err,dat) {
 			  if (err) {
+				  console.log(err);
 				// Handle error.
 			  }else{
 				  console.log(dat);
