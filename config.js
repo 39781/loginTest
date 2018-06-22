@@ -1,21 +1,18 @@
 module.exports = {	
-	responseObj:{
-		"conversationToken": "",
-		"expectUserResponse": true,
-		"expectedInputs": [
+	responseObj: {
+		"speech": "",
+		"messages": [
 			{
-				"inputPrompt": {
-					"richInitialPrompt": {
-						"items": [],
-						"suggestions": []								
-					}
-				},
-				"possibleIntents": [
-					{
-						"intent": "actions.intent.TEXT"
-					}
-				]
+				"displayText": "Text response",
+				"platform": "google",
+				"textToSpeech": "Audio response",
+				"type": "simple_response"
 			}
-		]
-	}	
+		],
+		{
+		  "type": 0,
+		  "speech": ""
+		}
+	}
 }
+
