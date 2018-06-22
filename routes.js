@@ -17,7 +17,7 @@ router.post('/validateUser',function(req, res){
 		Otps[emps[req.body.username]] = 45627;
 		console.log(smsApi,emps[req.body.username]);
 		res.status(200);
-			res.json({url:'verifyOtp.html?token=TKN'+emps[req.body.username].split("").reverse().join("")}).end();
+		res.json({token:'TKN'+emps[req.body.username].split("").reverse().join("")}).end();
 	}	
 });
 
