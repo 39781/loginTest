@@ -12,6 +12,7 @@ router.post('/validateUser',function(req, res){
 		var smsApi = config.smsApi.replace('phonenumber',emps[req.body.username]);	
 		smsApi = smsApi.replace('Otpnumber',45627);
 		Otps[emps[req.body.username]] = 45627;
+		console.log(smsApi,emps[req.body.username]);
 		request(smsApi, function (error, response, body) {
 			console.log(body);			
 			res.sendFile(path.join(__dirname, '../public', 'verifyOtp.html?token=TKN'+emps[req.body.username].split("").reverse().join("")));			
