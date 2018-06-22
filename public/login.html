@@ -135,7 +135,7 @@ span.psw {
   
   <form class="modal-content animate">
     <div class="imgcontainer">
-      <span onclick="window.close()" class="close" title="Close Modal">&times;</span>
+      <span onclick="window.close()" class="close" id='close' title="Close Modal">&times;</span>
       <img src="./images/Hema.png" alt="Avatar" class="avatar">
     </div>
 
@@ -181,7 +181,7 @@ function validateOtp() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {					
-			history.go(-1);
+			document.getElementById("close").click();
 		}else{
 			document.getElementById("status").value = "invalid OTP, Please enter valid OTP";
 			document.getElementById("otp").value="";
