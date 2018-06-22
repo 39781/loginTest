@@ -6,7 +6,9 @@ var config			= require('./config.js');
 var path			= require("path");	
 
 var Otps ={};
-
+router.get('/close',function(req,res){
+	res.redirect('close.html');
+})
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
 	if(typeof(emps[req.body.username])!='undefined'){
@@ -20,10 +22,11 @@ router.post('/validateUser',function(req, res){
 });
 
 router.post('/validateOtp',function(req, res){
-	console.log(req.body);
+	
 	if(Otps[req.body.token]==req.body.otp){
+		
 		res.status(200);
-		res.json({status:true}).end();	
+		res.redirect('/close');
 	}else{
 		res.status(400);
 		res.json({status:false}).end();	
