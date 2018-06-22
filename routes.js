@@ -57,6 +57,7 @@ var simpleResponse = function(response, responseText){
 			"displayText": responseText
 		}
 	});	
+	console.log(JSON.stringify(response));
 	return response;
 }
 
