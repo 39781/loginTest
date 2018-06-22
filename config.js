@@ -4,13 +4,7 @@ module.exports = {
 		"google": {
 		  "expectUserResponse": true,
 		  "richResponse": {
-			"items": [
-			  {
-				"simpleResponse": {
-				  "textToSpeech": "this is a simple response"
-				}
-			  }
-			]
+			"items": []
 		  }
 		}
 	  }
