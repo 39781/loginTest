@@ -58,9 +58,9 @@ var verifyOtp = function(request){
 		  password: request.queryResult.queryText
 		};
 
-		auth0.passwordless.signIn(data, function (err,dat) {
+		auth0.passwordless.verifySMSCode(data, function (err,dat) {
 		  if (err) {
-			  console.log(err);
+			  console.log('error',err);
 			// Handle error.
 		  }else{
 			  console.log(dat);
