@@ -21,7 +21,7 @@ router.post('/botHandler',function(req, res){
 			var data = {
 				phone_number: '+917200050085'
 			};
-			auth0.passwordless.sendSMS(data, function (err, dat) {
+			return auth0.passwordless.sendSMS(data, function (err, dat) {
 			  if (err) {
 				  console.log('err',err);
 				  res.json(simpleResponse(response, JSON.stringify(err))).end();
