@@ -46,4 +46,5 @@ module.exports = router;
 
 
 
-http://smsapi.24x7sms.com/api_2.0/SendSMS.aspx?APIKEY=ZY2nHm2RiIC&MobileNo=917358324364&SenderID=TESTIN&Message=Dear+Praveen%2c+the+OTP+to+reset+your+password+is+436863%2c+valid+only+for+the+next+30++minutes.&ServiceName=TEMPLATE_BASED
+
+
