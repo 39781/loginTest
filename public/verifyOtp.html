@@ -158,10 +158,9 @@ function validateOtp() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {					
-			alert('login success');
+				
+			window.history.go(-2);
 			
-down vote
-window.open('', '_self', ''); window.close();
 		}else{
 			document.getElementById("status").value = "invalid OTP, Please enter valid OTP";
 			document.getElementById("otp").value="";
@@ -172,6 +171,7 @@ window.open('', '_self', ''); window.close();
 	tkn = tkn.replace('TKN',"");
 	tkn = tkn.split("").reverse().join("");
 	var otp = document.getElementById('otp').value;
+	console.log(otp);
 	xmlhttp.open("POST", "/validateOtp");
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify({token:tkn,"otp":otp}));	

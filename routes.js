@@ -22,7 +22,7 @@ router.post('/validateUser',function(req, res){
 });
 
 router.post('/validateOtp',function(req, res){
-	
+	console.log(req.body);
 	if(Otps[req.body.token]==req.body.otp){
 		
 		res.status(200);
