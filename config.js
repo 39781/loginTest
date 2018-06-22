@@ -7,12 +7,12 @@ module.exports = {
 				"platform": "google",
 				"textToSpeech": "Audio response",
 				"type": "simple_response"
+			},
+			{
+			  "type": 0,
+			  "speech": ""
 			}
-		],
-		{
-		  "type": 0,
-		  "speech": ""
-		}
+		]		
 	}
 }
 
