@@ -12,9 +12,11 @@ var auth0 = new AuthenticationClient({
 });
 
 router.post('/botHandler',function(req, res){
-	console.log(JSON.stringify(req.body));
+	//console.log(JSON.stringify(req.body));
 		var response = JSON.parse(JSON.stringify(config.responseObj));
-		console.log(req.body.queryResult.parameters.empid);		
+		console.log('empid',req.body.queryResult.parameters.empid);		
+		console.log('query text',req.body.queryResult.queryText);
+		console.log('action',req.body.queryResult.action);
 		if(req.body.queryResult.action == 'input.welcome'){
 			var data = {
 				phone_number: '+917200050085'
