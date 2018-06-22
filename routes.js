@@ -12,8 +12,7 @@ var auth0 = new AuthenticationClient({
 });
 
 router.post('/botHandler',function(req, res){
-		console.log(JSON.stringify(req.body));
-		var response = JSON.parse(JSON.stringify(config.responseObj));
+		console.log(JSON.stringify(req.body));		
 		console.log('empid',req.body.queryResult.parameters.empid);		
 		console.log('query text',req.body.queryResult.queryText);
 		console.log('action',req.body.queryResult.action);
@@ -33,6 +32,7 @@ router.post('/botHandler',function(req, res){
 
 var welcome = function(request){
 	return new Promise(function(resolve, reject){
+		var response = JSON.parse(JSON.stringify(config.responseObj));
 		var data = {
 			phone_number: '+917200050085'
 		};
@@ -50,6 +50,7 @@ var welcome = function(request){
 }
 
 var verifyOtp = function(request){
+	var response = JSON.parse(JSON.stringify(config.responseObj));
 	return new Promise(function(resolve, reject){
 		console.log('token vertifying');
 		var data = {
