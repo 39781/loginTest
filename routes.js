@@ -15,12 +15,13 @@ router.post('/botHandler',function(req, res){
 	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
 		var buttons= [
-            {              
-              "openUriAction": {
-                "uri": "https://logintests.herokuapp.com/login.html"
-              },"title": "Login",
-            }
-          ];
+              {
+                "title": "Button Title",
+                "openUrlAction": {
+                  "url": "https://www.google.com"
+                }
+              }
+            ];
 		return basicCard(result,"Please login to help you.",buttons)
 	})
 	.then(function(result){
