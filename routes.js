@@ -12,7 +12,9 @@ router.get('/close',function(req,res){
 router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
-	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.").then(function(result){
+	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
+	.then(function(result){
+		console.log(result);
 		var buttons= [
             {
               "title": "Login",
@@ -74,7 +76,7 @@ var simpleResponse = function(response, responseText){
 }
 var basicCard = function(response,text, buttons){
 	return new Promise(function(resolve,reject){		
-		response.payload.google.richResponse.items(
+		response.payload.google.richResponse.items.push(
 			{"basicCard": {
 			  "formattedText": text,
 			  "image": {},
