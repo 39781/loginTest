@@ -11,20 +11,28 @@ router.get('/close',function(req,res){
 })
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
+	console.log(typeof(emps[req.body.username]));
 	if(typeof(emps[req.body.username])!='undefined'){
-		var smsApi = config.smsApi.replace('phonenumber',emps[req.body.username]);	
+		var smsApi = config.smsApi.replace('phonenumber',emps[req.body.username].ph);	
 		smsApi = smsApi.replace('Otpnumber',45627);
-		Otps[emps[req.body.username]] = 45627;
-		console.log(smsApi,emps[req.body.username]);
-		res.status(200);
-		res.json({token:'TKN'+emps[req.body.username].split("").reverse().join("")}).end();
-	}	
+		smsApi = smsApi.replace('name',emps[req.body.username].name);
+		Otps[emps[req.body.username].ph] = 45627;
+		console.log(smsApi,emps[req.body.username].ph);
+		request(smsApi,function(error,response,body){
+			console.log(error,body);
+			res.status(200);
+			res.json({token:'TKN'+emps[req.body.username].ph.split("").reverse().join("")}).end();
+		});		
+	}else{
+		console.log('fail');
+		res.status(400);
+		res.json({status:false}).end();
+	}		
 });
 
 router.post('/validateOtp',function(req, res){
 	console.log(req.body);
-	if(Otps[req.body.token]==req.body.otp){
-		
+	if(Otps[req.body.token]==req.body.otp){		
 		res.status(200);
 		res.json({status:true}).end();
 	}else{

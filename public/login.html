@@ -45,7 +45,8 @@ button:hover {
 }
 
 img.avatar {
-    width: 40%;
+    width: 5%;
+	height:5%;
     border-radius: 50%;
 }
 
@@ -165,11 +166,15 @@ span.psw {
 function validateLogin() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {		
-			console.log(this.responseText);
-			document.getElementById('containerBody').innerHTML = '<label for="uname"><b>Enter OTP</b></label><input type="text" placeholder="OTP" id = "otp" name="otp" required><button type="button" onClick="validateOtp()">Verify OTP</button><input type=hidden value="'+JSON.parse(this.responseText).token+'" id="token"/>';
-		}else{
-			document.getElementById("status").innerHTML = "invalid username/password";
+		if (this.readyState == 4){
+			if(this.status == 200) {		
+				console.log(this.responseText);
+				document.getElementById('containerBody').innerHTML = '<label for="uname"><b>Enter OTP</b></label><input type="text" placeholder="OTP" id = "otp" name="otp" required><button type="button" onClick="validateOtp()">Verify OTP</button><input type=hidden value="'+JSON.parse(this.responseText).token+'" id="token"/>';			
+			}else if(this.status == 400){
+				console.log('hari');
+				alert('test');
+				document.getElementById("status").innerHTML = "invalid username/password";
+			}
 		}
 	};
 	xmlhttp.open("POST", "/validateUser");
@@ -180,11 +185,13 @@ function validateLogin() {
 function validateOtp() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {					
-			document.getElementById("close").click();
-		}else{
-			document.getElementById("status").innerHTML = "invalid OTP, Please enter valid OTP";
-			document.getElementById("otp").value="";
+		if (this.readyState == 4){
+			if(this.status == 200) {				
+				document.getElementById("close").click();
+			}else if(this.status == 400){
+				document.getElementById("status").innerHTML = "invalid OTP, Please enter valid OTP";
+				document.getElementById("otp").value="";
+			}
 		}
 	};
 	
