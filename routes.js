@@ -77,9 +77,9 @@ var basicCard = function(response,text, buttons){
 	return new Promise(function(resolve,reject){		
 		response.payload.google.richResponse.items.push(
 			{"basicCard": {
-			  "formattedText": text,
-			  "image": {},
-			  "buttons": buttons
+			  "formattedText": text,			 
+			  "buttons": buttons,
+			   "image": {},
 			}		
 		});
 		
