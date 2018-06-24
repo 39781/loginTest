@@ -161,8 +161,8 @@ span.psw {
 </div>
 
 <script>
-
-
+var session = window.location.href.split('=')[1];
+console.log(session);
 function validateLogin() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -205,8 +205,10 @@ function validateOtp() {
 	xmlhttp.send(JSON.stringify({token:tkn,"otp":otp}));	
 }
 function dialogFlowAPI(resp){
+	alert(resp.qry);
+	alert(resp.accessToeken);
 	 var options = {
-		sessionId: resp.sessId,
+		sessionId: session,
 		lang: "en",
 		query:resp.qry
 	};

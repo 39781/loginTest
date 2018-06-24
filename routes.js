@@ -18,7 +18,7 @@ router.post('/botHandler',function(req, res){
               {
                 "title": "Login",
                 "openUrlAction": {
-                  "url": "https://logintests.herokuapp.com"
+                  "url": "https://logintests.herokuapp.com/login.html?sess="+req.body.session;
                 }
               }
             ]
@@ -56,7 +56,7 @@ router.post('/validateOtp',function(req, res){
 	console.log(req.body);
 	if(Otps[req.body.token]==req.body.otp){		
 		res.status(200);
-		res.json({status:true,qry:"loginSuccess",accessToken:config.accessToken}).end();
+		res.json({status:true,qry:"login Success",accessToken:config.accessToken}).end();
 	}else{
 		res.status(400);
 		res.json({status:false}).end();	
@@ -82,8 +82,7 @@ var basicCard = function(response,text, buttons){
 			  "buttons": buttons,
 			   "image": {},
 			}		
-		});
-		
+		});		
 	resolve(response);
 	});
 }
