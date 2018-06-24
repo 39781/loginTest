@@ -1,4 +1,5 @@
-module.exports = {	
+module.exports = {
+	accessToken:"c1504b59c90448029b6b4edf822e9559",	
 	responseObj: {
 	  "payload": {
 		"google": {
