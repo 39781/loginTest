@@ -21,7 +21,7 @@ router.post('/botHandler',function(req, res){
               }
             }
           ]
-		return basicCard(resp,"Please login to help you.",buttons)
+		return basicCard(result,"Please login to help you.",buttons)
 	})
 	.then(function(result){
 		res.json(result).end();
