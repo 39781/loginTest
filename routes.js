@@ -13,19 +13,18 @@ router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
 	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
-	.then(function(result){
-		console.log(result);
+	.then(function(result){		
 		var buttons= [
-            {
-              "title": "Login",
+            {              
               "openUriAction": {
                 "uri": "https://logintests.herokuapp.com/login.html"
-              }
+              },"title": "Login",
             }
           ]
 		return basicCard(result,"Please login to help you.",buttons)
 	})
 	.then(function(result){
+		console.log(result);
 		res.json(result).end();
 	});
 	
@@ -83,6 +82,7 @@ var basicCard = function(response,text, buttons){
 			  "buttons": buttons
 			}		
 		});
+		
 	resolve(response);
 	});
 }
