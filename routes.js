@@ -20,7 +20,7 @@ router.post('/botHandler',function(req, res){
                 "uri": "https://logintests.herokuapp.com/login.html"
               },"title": "Login",
             }
-          ]
+          ];
 		return basicCard(result,"Please login to help you.",buttons)
 	})
 	.then(function(result){
@@ -79,7 +79,11 @@ var basicCard = function(response,text, buttons){
 			{"basicCard": {
 			  "formattedText": text,			 
 			  "buttons": buttons,
-			   "image": {},
+			   "title": "Card Title",
+            "image": {
+              "url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+              "accessibilityText": "Google Logo"
+            },
 			}		
 		});
 		
