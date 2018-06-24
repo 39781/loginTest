@@ -18,7 +18,7 @@ router.post('/botHandler',function(req, res){
               {
                 "title": "Login",
                 "openUrlAction": {
-                  "url": "https://logintests.herokuapp.com/login.html?sess="+req.body.session;
+                  "url": "https://logintests.herokuapp.com/login.html?sess="+req.body.session
                 }
               }
             ]
