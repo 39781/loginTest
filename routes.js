@@ -56,7 +56,7 @@ router.post('/validateOtp',function(req, res){
 	console.log(req.body);
 	if(Otps[req.body.token]==req.body.otp){		
 		res.status(200);
-		res.json({status:true,qry:"login Success",accessToken:config.accessToken}).end();
+		res.json({status:true,qry:"login Success",dialogFlowapi:config.dialogFlowapi,accessToken:config.accessToken}).end();
 	}else{
 		res.status(400);
 		res.json({status:false}).end();	
