@@ -169,7 +169,7 @@ function validateLogin() {
 			console.log(this.responseText);
 			document.getElementById('containerBody').innerHTML = '<label for="uname"><b>Enter OTP</b></label><input type="text" placeholder="OTP" id = "otp" name="otp" required><button type="button" onClick="validateOtp()">Verify OTP</button><input type=hidden value="'+JSON.parse(this.responseText).token+'" id="token"/>';
 		}else{
-			document.getElementById("status").value = "invalid username/password";
+			document.getElementById("status").innerHTML = "invalid username/password";
 		}
 	};
 	xmlhttp.open("POST", "/validateUser");
@@ -183,7 +183,7 @@ function validateOtp() {
 		if (this.readyState == 4 && this.status == 200) {					
 			document.getElementById("close").click();
 		}else{
-			document.getElementById("status").value = "invalid OTP, Please enter valid OTP";
+			document.getElementById("status").innerHTML = "invalid OTP, Please enter valid OTP";
 			document.getElementById("otp").value="";
 		}
 	};
