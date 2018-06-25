@@ -6,8 +6,9 @@ var config			= require('./config.js');
 var path			= require("path");	
 
 var currentSession;
-const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion} = require('dialogflow-fulfillment');
+//const {WebhookClient} = require('dialogflow-fulfillment');
+//const {Card, Suggestion} = require('dialogflow-fulfillment');
+const { dialogflow } = require('actions-on-google');
 const { SimpleResponse } =require('actions-on-google');
 var Otps ={};
 router.get('/',function(req,res){
@@ -32,7 +33,16 @@ router.post('/botHandler',(req,res)=>processWebhook(req, res));
 		res.json(result).end();
 	});*/	
 var processWebhook = function(request, response){
-	console.log('processWebhook');
+	const app = dialogflow()
+	app.intent('Default Welcome Intent', conv => {
+  conv.ask('Hi, how is it going?')
+  conv.ask(`Here's a picture of a cat`)
+  conv.ask(new Image({
+    url: 'https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/imgs/160204193356-01-cat-500.jpg',
+    alt: 'A cat',
+  }))
+})
+	/*console.log('processWebhook');
 	//console.log(JSON.stringify(request));
 	var resp = JSON.parse(JSON.stringify(config.responseObj));	
 	const agent = new WebhookClient({ request, response });
@@ -53,7 +63,7 @@ var processWebhook = function(request, response){
 	let intentMap = new Map();
 	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);
-	agent.handleRequest(intentMap);
+	agent.handleRequest(intentMap);*/
 }
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
