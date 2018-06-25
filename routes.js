@@ -4,7 +4,7 @@ var fs 				= require("fs");
 var request			= require('request');
 var config			= require('./config.js');
 var path			= require("path");	
-var currentSession  = req.body.session;
+var currentSession;
 var Otps ={};
 router.get('/',function(req,res){
 	res.redirect('login.html');
@@ -12,6 +12,7 @@ router.get('/',function(req,res){
 router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
+	 currentSession  = req.body.session;
 	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
 		var buttons= [
