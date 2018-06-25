@@ -28,10 +28,10 @@ router.post('/botHandler',function(req, res){
        })
      );*/
 	}
-	let intentMap = new Map();
-	intentMap.set('Default Welcome Intent', welcome);
-	intentMap.set('loginSuccess', loginSuccess);	
-	agent.handleRequest(intentMap);
+	//let intentMap = new Map();
+	//intentMap.set('Default Welcome Intent', welcome);
+	//intentMap.set('loginSuccess', loginSuccess);	
+	agent.handleRequest(welcome);
 	currentSession  = req.body.session;
 	/*simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
