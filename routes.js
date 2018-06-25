@@ -5,6 +5,10 @@ var request			= require('request');
 var config			= require('./config.js');
 var path			= require("path");	
 var currentSession;
+const {WebhookClient} = require('dialogflow-fulfillment');
+const {Card, Suggestion} = require('dialogflow-fulfillment');
+var agent;
+
 var Otps ={};
 router.get('/',function(req,res){
 	res.redirect('login.html');
@@ -12,7 +16,11 @@ router.get('/',function(req,res){
 router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
-	 currentSession  = req.body.session;
+	agent = new WebhookClient({ req, res });
+	let intentMap = new Map();
+	intentMap.set('loginSuccess', loginSuccess);	
+	agent.handleRequest(intentMap);
+	currentSession  = req.body.session;
 	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
 		var buttons= [
@@ -111,6 +119,21 @@ var dialogFlowAPI = function(qry, sessId){
 			}		
 		});			
 	});
+}
+
+var loginSuccess = function(){
+     agent.add(`user validation sucess`);
+     agent.add(new Card({
+         title: `Menus`,
+         imageUrl: 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
+         text: `This is the body text of a card.  You can even use line\n  breaks and emoji! 💁`,
+         buttonText: 'This is a button',
+         buttonUrl: 'https://assistant.google.com/'
+       })
+     );
+   //  agent.add(new Suggestion(`Quick Reply`));
+    // agent.add(new Suggestion(`Suggestion`));
+     //agent.setContext({ name: 'weather', lifespan: 2, parameters: { city: 'Rome' }});   
 }
 
 module.exports = router;

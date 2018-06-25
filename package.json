@@ -22,11 +22,12 @@
   },
   "homepage": "https://github.com/39781/EFlight#readme",
   "dependencies": {
-    "actions-on-google": "^1.7.0",
+    "actions-on-google": "^1.11.0",
     "auth0": "^2.9.1",
     "auth0-js": "^9.6.1",
     "basic-auth": "^2.0.0",
     "body-parser": "^1.18.2",
+    "dialogflow-fulfillment": "^0.4.1",
     "ejs": "^2.5.8",
     "express": "^4.16.2",
     "express-redirect": "^1.2.2",
