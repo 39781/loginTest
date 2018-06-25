@@ -59,6 +59,7 @@ var processWebhook = function(request, response){
 }
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
+	currentSession = req.body.sess;
 	console.log(typeof(emps[req.body.username]));
 	if(typeof(emps[req.body.username])!='undefined'){
 		var smsApi = config.smsApi.replace('phonenumber',emps[req.body.username].ph);	
