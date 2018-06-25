@@ -86,10 +86,10 @@ var processWebhook = function(request, response){
     }
   }));
 	}
-	let intentMap = new Map();
-	intentMap.set('Default Welcome Intent', welcome);
-	intentMap.set('loginSuccess', loginSuccess);
-	agent.handleRequest(intentMap);
+	//let intentMap = new Map();
+	//intentMap.set('Default Welcome Intent', welcome);
+	//intentMap.set('loginSuccess', loginSuccess);
+	agent.handleRequest(welcome);
 }
 
 router.post('/validateUser',function(req, res){
