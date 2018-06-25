@@ -114,7 +114,7 @@ var basicCard = function(response,text, buttons){
 	});
 }
 var dialogFlowAPI = function(qry, sessId){	
-	return new Promise(function(resolve, reject){.
+	return new Promise(function(resolve, reject){
 	console.log('hari dialogflowAPI', qry, sessId);
 		var options = { 
 			method: 'POST',
