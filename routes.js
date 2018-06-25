@@ -130,6 +130,7 @@ var dialogFlowAPI = function(qry, sessId){
 			},			
 			json: true 
 		}; 					
+		console.log(JSON.stringify(options));
 		request(options, function (error, response, body) {
 			if(error){
 				res.json({error:"error in chat server api call"}).end();
