@@ -7,9 +7,8 @@ var path			= require("path");
 
 var currentSession;
 const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion, SimpleResponse} = require('dialogflow-fulfillment');
-
-
+const {Card, Suggestion} = require('dialogflow-fulfillment');
+const { SimpleResponse } =require('actions-on-google');
 var Otps ={};
 router.get('/',function(req,res){
 	res.redirect('login.html');
