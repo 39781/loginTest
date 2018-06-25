@@ -7,7 +7,7 @@ var path			= require("path");
 
 var currentSession;
 const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion} = require('dialogflow-fulfillment');
+const {Card, Suggestion, SimpleResponse} = require('dialogflow-fulfillment');
 
 
 var Otps ={};
@@ -41,8 +41,8 @@ var processWebhook = function(request, response){
  
 	function welcome(agent){
 		console.log('hari');
-	agent.add("Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.");
-     agent.add(new Card({
+		agent.add(new SimpleResponse({speech:"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.",text:"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin."}));
+		agent.add(new Card({
          title: `Menus`,
          imageUrl: '',
          text: ``,
