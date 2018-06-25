@@ -18,10 +18,11 @@ router.post('/botHandler',function(req, res){
 	console.log(JSON.stringify(req.body));
 	agent = new WebhookClient({ request:req, response:res });
 	let intentMap = new Map();
+	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);	
 	agent.handleRequest(intentMap);
 	currentSession  = req.body.session;
-	simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
+	/*simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
 		var buttons= [
               {
@@ -36,7 +37,7 @@ router.post('/botHandler',function(req, res){
 	.then(function(result){
 		console.log(result);
 		res.json(result).end();
-	});
+	});*/	
 	
 	
 })
@@ -121,6 +122,17 @@ var dialogFlowAPI = function(qry, sessId){
 	});
 }
 
+var welcome = function(){
+	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
+     agent.add(new Card({
+         title: `Menus`,
+         //imageUrl: '',
+         text: ``,
+         buttonText: 'Login',
+         buttonUrl: 'https://logintests.herokuapp.com/login.html'
+       })
+     );
+}
 var loginSuccess = function(){
      agent.add(`user validation sucess`);
      agent.add(new Card({
