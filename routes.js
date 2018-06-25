@@ -16,7 +16,7 @@ router.get('/',function(req,res){
 router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
-	agent = new WebhookClient({ req, res });
+	agent = new WebhookClient({ request:req, response:res });
 	let intentMap = new Map();
 	intentMap.set('loginSuccess', loginSuccess);	
 	agent.handleRequest(intentMap);
