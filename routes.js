@@ -88,7 +88,7 @@ var basicCard = function(response,text, buttons){
 	resolve(response);
 	});
 }
-var dialogflowAPI = function(qry, sessId){	
+var dialogFlowAPI = function(qry, sessId){	
 	return new Promise(function(resolve, reject){
 		var options = { 
 			method: 'POST',
