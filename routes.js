@@ -34,6 +34,7 @@ router.post('/botHandler',(req,res)=>processWebhook(req, res));
 	});*/	
 var processWebhook = function(request, response){
 	console.log('processWebhook');
+	console.log(JSON.stringify(request));
 	var resp = JSON.parse(JSON.stringify(config.responseObj));	
 	const agent = new WebhookClient({ request, response });
   
@@ -52,8 +53,7 @@ var processWebhook = function(request, response){
 	}
 	let intentMap = new Map();
 	intentMap.set('Default Welcome Intent', welcome);
-	intentMap.set('loginSuccess', loginSuccess);	
-	
+	intentMap.set('loginSuccess', loginSuccess);		
 }
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
