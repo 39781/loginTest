@@ -33,8 +33,7 @@ router.post('/botHandler',(req,res)=>processWebhook(req, res));
 		res.json(result).end();
 	});*/	
 var processWebhook = function(request, response){
-	var resp = JSON.parse(JSON.stringify(config.responseObj));
-	console.log(JSON.stringify(req.body));
+	var resp = JSON.parse(JSON.stringify(config.responseObj));	
 	const agent = new WebhookClient({ request, response });
   
   
