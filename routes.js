@@ -17,7 +17,8 @@ router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
 	const agent = new WebhookClient({ request:req, response:res });
-	function welcome(agent){
+	function welcome(){
+		console.log('hari');
 	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
      /*agent.add(new Card({
          title: `Menus`,
