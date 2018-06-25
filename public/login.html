@@ -177,7 +177,7 @@ function validateLogin() {
 			}
 		}
 	};
-	xmlhttp.open("POST", "/validateUser");
+	xmlhttp.open("POST", "https://logintests.herokuapp.com/validateUser");
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify({username:document.getElementById("uname").value, password:document.getElementById("psw").value}));	
 }
@@ -200,7 +200,7 @@ function validateOtp() {
 	tkn = tkn.split("").reverse().join("");
 	var otp = document.getElementById('otp').value;
 	console.log(otp);
-	xmlhttp.open("POST", "/validateOtp");
+	xmlhttp.open("POST", "https://logintests.herokuapp.com/validateOtp");
 	xmlhttp.setRequestHeader("Content-Type", "application/json");
 	xmlhttp.send(JSON.stringify({token:tkn,"otp":otp}));	
 }

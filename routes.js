@@ -6,8 +6,9 @@ var config			= require('./config.js');
 var path			= require("path");	
 
 var currentSession;
-const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion, Payload } = require('dialogflow-fulfillment');
+//const {WebhookClient} = require('dialogflow-fulfillment');
+//const {Card, Suggestion} = require('dialogflow-fulfillment');
+const { dialogflow } = require('actions-on-google');
 const { SimpleResponse } =require('actions-on-google');
 var Otps ={};
 router.get('/',function(req,res){
@@ -41,57 +42,21 @@ var processWebhook = function(request, response){
  
 	function welcome(agent){
 		console.log('hari');
-		agent.add(new Payload(agent.ACTIONS_ON_GOOGLE,   {
-    "expectUserResponse": true,
-    "richResponse": {
-      "items": [
-        {
-          "simpleResponse": {
-            "textToSpeech": "Choose a item"
-          }
-        }
-      ]
-    },
-    "systemIntent": {
-      "intent": "actions.intent.OPTION",
-      "data": {
-        "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-        "carouselSelect": {
-          "items": [
-            {
-              "optionInfo": {
-                "key": "first title"
-              },
-              "description": "first description",
-              "image": {
-                "url": "https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
-                "accessibilityText": "first alt"
-              },
-              "title": "first title"
-            },
-            {
-              "optionInfo": {
-                "key": "second"
-              },
-              "description": "second description",
-              "image": {
-                "url": "https://lh3.googleusercontent.com/Nu3a6F80WfixUqf_ec_vgXy_c0-0r4VLJRXjVFF_X_CIilEu8B9fT35qyTEj_PEsKw",
-                "accessibilityText": "second alt"
-              },
-              "title": "second title"
-            }
-          ]
-        }
-      }
-    }
-  }));
+		agent.add(new SimpleResponse({speech:"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.",text:"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin."}));
+		agent.add(new Card({
+         title: `Menus`,
+         imageUrl: '',
+         text: ``,
+         buttonText: 'Login',
+         buttonUrl: 'https://logintests.herokuapp.com/login.html'
+       })
+     );
 	}
-	//let intentMap = new Map();
-	//intentMap.set('Default Welcome Intent', welcome);
-	//intentMap.set('loginSuccess', loginSuccess);
-	agent.handleRequest(welcome);
+	let intentMap = new Map();
+	intentMap.set('Default Welcome Intent', welcome);
+	intentMap.set('loginSuccess', loginSuccess);
+	agent.handleRequest(intentMap);
 }
-
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
 	console.log(typeof(emps[req.body.username]));
@@ -149,7 +114,8 @@ var basicCard = function(response,text, buttons){
 	});
 }
 var dialogFlowAPI = function(qry, sessId){	
-	return new Promise(function(resolve, reject){
+	return new Promise(function(resolve, reject){.
+	console.log('hari dialogflowAPI');
 		var options = { 
 			method: 'POST',
 			url: config.dialogFlowAPI,
