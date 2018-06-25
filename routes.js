@@ -33,10 +33,11 @@ router.post('/botHandler',(req,res)=>processWebhook(req, res));
 		res.json(result).end();
 	});*/	
 var processWebhook = function(request, response){
+	console.log('processWebhook');
 	var resp = JSON.parse(JSON.stringify(config.responseObj));	
 	const agent = new WebhookClient({ request, response });
   
-  
+ 
 	function welcome(agent){
 		console.log('hari');
 	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
