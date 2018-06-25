@@ -15,29 +15,7 @@ router.get('/',function(req,res){
 	res.redirect('login.html');
 })
 
-router.post('/botHandler',function(req, res){
-	var resp = JSON.parse(JSON.stringify(config.responseObj));
-	console.log(JSON.stringify(req.body));
-	const agent = new WebhookClient({ request:req, response:res });
-  
-  
-	function welcome(){
-		console.log('hari');
-	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
-     agent.add(new Card({
-         title: `Menus`,
-         imageUrl: '',
-         text: ``,
-         buttonText: 'Login',
-         buttonUrl: 'https://logintests.herokuapp.com/login.html'
-       })
-     );
-	}
-	let intentMap = new Map();
-	intentMap.set('Default Welcome Intent', welcome);
-	intentMap.set('loginSuccess', loginSuccess);	
-	
-	currentSession  = req.body.session;
+router.post('/botHandler',(req,res)=>processWebhook(req, res));		
 	/*simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
 		var buttons= [
@@ -54,9 +32,29 @@ router.post('/botHandler',function(req, res){
 		console.log(result);
 		res.json(result).end();
 	});*/	
-	res.end();
+var processWebhook = function(request, response){
+	var resp = JSON.parse(JSON.stringify(config.responseObj));
+	console.log(JSON.stringify(req.body));
+	const agent = new WebhookClient({ request, response });
+  
+  
+	function welcome(agent){
+		console.log('hari');
+	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
+     agent.add(new Card({
+         title: `Menus`,
+         imageUrl: '',
+         text: ``,
+         buttonText: 'Login',
+         buttonUrl: 'https://logintests.herokuapp.com/login.html'
+       })
+     );
+	}
+	let intentMap = new Map();
+	intentMap.set('Default Welcome Intent', welcome);
+	intentMap.set('loginSuccess', loginSuccess);	
 	
-})
+}
 router.post('/validateUser',function(req, res){
 	var emps = config.employees;
 	console.log(typeof(emps[req.body.username]));
