@@ -122,7 +122,7 @@ var dialogFlowAPI = function(qry, sessId){
 	});
 }
 
-var welcome = function(){
+var welcome = function(agent){
 	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
      agent.add(new Card({
          title: `Menus`,
@@ -133,7 +133,7 @@ var welcome = function(){
        })
      );
 }
-var loginSuccess = function(){
+var loginSuccess = function(agent){
      agent.add(`user validation sucess`);
      agent.add(new Card({
          title: `Menus`,
