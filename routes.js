@@ -29,7 +29,7 @@ router.post('/botHandler',function(req, res){
      );*/
 	}
 	let intentMap = new Map();
-	intentMap.set('Default Welcome Intent', welcome);
+	intentMap.set('input.welcome', welcome);
 	intentMap.set('loginSuccess', loginSuccess);	
 	agent.handleRequest(intentMap);
 	currentSession  = req.body.session;
