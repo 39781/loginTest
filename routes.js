@@ -2,9 +2,11 @@ var express 		= require('express');
 var router			= express.Router();	 
 var fs 				= require("fs");	
 var request			= require('request');
+var DialogflowApp	= require('actions-on-google').DialogflowApp
 var config			= require('./config.js');
 var path			= require("path");	
 var currentSession;
+
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Card, Suggestion} = require('dialogflow-fulfillment');
 //var agent;
@@ -16,7 +18,16 @@ router.get('/',function(req,res){
 router.post('/botHandler',function(req, res){
 	var resp = JSON.parse(JSON.stringify(config.responseObj));
 	console.log(JSON.stringify(req.body));
-	const agent = new WebhookClient({ request:req, response:res });
+	const app = new DialogflowApp({request: req, response: res});
+	const WELCOME_INTENT = 'input.welcome';
+	function welcomeIntent (app) {
+		app.ask('Welcome to action snippets! Say a number.',['Say any number', 'Pick a number', 'We can stop here. See you soon.']);
+	}
+	const actionMap = new Map();
+	actionMap.set(WELCOME_INTENT, welcomeIntent);
+	//actionMap.set(NUMBER_INTENT, numberIntent);
+	app.handleRequest(actionMap);
+	/*const agent = new WebhookClient({ request:req, response:res });
 	var welcome = function(agent){
 	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
      /*agent.add(new Card({
@@ -26,12 +37,12 @@ router.post('/botHandler',function(req, res){
          buttonText: 'Login',
          buttonUrl: 'https://logintests.herokuapp.com/login.html'
        })
-     );*/
+     );
 	}
 	let intentMap = new Map();
 	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);	
-	agent.handleRequest(intentMap);
+	agent.handleRequest(intentMap);*/
 	currentSession  = req.body.session;
 	/*simpleResponse(resp,"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.")
 	.then(function(result){		
