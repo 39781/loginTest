@@ -4,7 +4,7 @@ var fs 				= require("fs");
 var request			= require('request');
 var config			= require('./config.js');
 var path			= require("path");	
-
+var currentSession  = req.body.session;
 var Otps ={};
 router.get('/',function(req,res){
 	res.redirect('login.html');
@@ -18,7 +18,7 @@ router.post('/botHandler',function(req, res){
               {
                 "title": "Login",
                 "openUrlAction": {
-                  "url": "https://logintests.herokuapp.com/login.html?sess="+req.body.session
+                  "url": "https://logintests.herokuapp.com/login.html"
                 }
               }
             ]
@@ -54,9 +54,10 @@ router.post('/validateUser',function(req, res){
 
 router.post('/validateOtp',function(req, res){
 	console.log(req.body);
-	if(Otps[req.body.token]==req.body.otp){		
+	if(Otps[req.body.token]==req.body.otp){
+		dialogFlowAPI("login success",currentSession);	
 		res.status(200);
-		res.json({status:true,qry:"login Success",dialogFlowapi:config.dialogFlowapi,accessToken:config.accessToken}).end();
+		res.json({status:true}).end();
 	}else{
 		res.status(400);
 		res.json({status:false}).end();	
@@ -86,7 +87,30 @@ var basicCard = function(response,text, buttons){
 	resolve(response);
 	});
 }
-
+var dialogflowAPI = function(qry, sessId){	
+	return new Promise(function(resolve, reject){
+		var options = { 
+			method: 'POST',
+			url: config.dialogFlowAPI,
+			headers: {
+				"Authorization": "Bearer " + config.accessToken
+			},
+			body:{
+				sessionId: sessId,
+				lang: "en",
+				query:qry
+			},			
+			json: true 
+		}; 					
+		request(options, function (error, response, body) {
+			if(error){
+				res.json({error:"error in chat server api call"}).end();
+			}else{						
+				resolve(body);
+			}		
+		});			
+	});
+}
 
 module.exports = router;
 
