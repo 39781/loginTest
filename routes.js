@@ -124,14 +124,14 @@ var dialogFlowAPI = function(qry, sessId){
 
 var welcome = function(agent){
 	agent.add(`Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.`);
-     agent.add(new Card({
+     /*agent.add(new Card({
          title: `Menus`,
-         //imageUrl: '',
+         imageUrl: '',
          text: ``,
          buttonText: 'Login',
          buttonUrl: 'https://logintests.herokuapp.com/login.html'
        })
-     );
+     );*/
 }
 var loginSuccess = function(agent){
      agent.add(`user validation sucess`);
