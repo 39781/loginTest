@@ -31,7 +31,7 @@ var fireResponse = function(req, res){
 	
 	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);
-	agent.handleRequest(intentMap);
+	agent.handleRequest(intentMap,{});
 }
 
 router.post('/validateUser',function(req, res){
@@ -43,7 +43,7 @@ router.post('/validateUser',function(req, res){
 
 
 var welcome = function(agent,sessId){
-	console.log('hari',agent);
+	console.log('hari',agent.request_);
 	agent.add(new Text({'text': `Welcome to my agent!`, 'ssml': `<speak>Hi<break time='5s'/>Welcome to my agent</speak>` }));
 	agent.add(new Card({
 	 title: `Menus`,
