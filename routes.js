@@ -43,7 +43,7 @@ router.post('/validateUser',function(req, res){
 
 
 var welcome = function(agent,sessId){
-	console.log('hari');
+	console.log('hari',agent);
 	agent.add(new Text({'text': `Welcome to my agent!`, 'ssml': `<speak>Hi<break time='5s'/>Welcome to my agent</speak>` }));
 	agent.add(new Card({
 	 title: `Menus`,
