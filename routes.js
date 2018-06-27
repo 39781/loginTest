@@ -6,9 +6,8 @@ var config			= require('./config.js');
 var path			= require("path");	
 
 var currentSession;
-//const {WebhookClient} = require('dialogflow-fulfillment');
-//const {Card, Suggestion} = require('dialogflow-fulfillment');
-const { dialogflow } = require('actions-on-google');
+const {WebhookClient} = require('dialogflow-fulfillment');
+const {Text, Card, Suggestion} = require('dialogflow-fulfillment');
 const { SimpleResponse } =require('actions-on-google');
 var Otps ={};
 router.get('/',function(req,res){
@@ -42,7 +41,7 @@ var processWebhook = function(request, response){
  
 	function welcome(agent){
 		console.log('hari');
-		agent.add(new SimpleResponse({speech:"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin.",text:"Hi I'm Hema !. I can help you to manage your leaves,search an employee, account recovery and create or track your service tickets. Please login to begin."}));
+		agent.add(new Text({'text': `Welcome to my agent!`, 'ssml': `<speak>Hi<break time='5s'/>Welcome to my agent</speak>` }));
 		agent.add(new Card({
          title: `Menus`,
          imageUrl: '',
