@@ -5,7 +5,7 @@ var request			= require('request');
 var config			= require('./config.js');
 var path			= require("path");	
 
-var currentSession = ;
+
 const {WebhookClient} = require('dialogflow-fulfillment');
 const {Text, Card, Suggestion} = require('dialogflow-fulfillment');
 const { SimpleResponse } =require('actions-on-google');
@@ -25,7 +25,7 @@ router.post('/botHandler',function(req, res){
 	fireResponse(req, res);
 });	
 
-var fireResponse(req, res){
+var fireResponse = function(req, res){
 	const agent = new WebhookClient({ request:res, response:res });  
 	let intentMap = new Map();
 	intentMap.set('Default Welcome Intent', welcome);
