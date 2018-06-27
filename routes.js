@@ -38,7 +38,7 @@ router.post('/validateUser',function(req, res){
 	console.log(JSON.stringify(req.body));
 	agents[req.body.sess].setFollowupEvent({'name':'loginSuccess','parameters':{}});
 	//fireResponse(reqs[req.body.sess]['req'],reqs[req.body.sess]['res']);
-	//res.end();
+	res.end();
 })
 
 
