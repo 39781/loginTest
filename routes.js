@@ -42,15 +42,15 @@ router.post('/validateUser',function(req, res){
 
 
 
-var welcome = function(agent,sessId){
-	console.log('hari',agent.request_.body);
+var welcome = function(agent){
+	console.log('hari',agent.request_.body.originalDetectIntentRequest.payload.conversation.conversationId);
 	agent.add(new Text({'text': `Welcome to my agent!`, 'ssml': `<speak>Hi<break time='5s'/>Welcome to my agent</speak>` }));
 	agent.add(new Card({
 	 title: `Menus`,
 	 imageUrl: '',
 	 text: ``,
 	 buttonText: 'Login',
-	 buttonUrl: 'https://logintests.herokuapp.com/login.html?sessId='+sessId
+	 buttonUrl: 'https://logintests.herokuapp.com/login.html?sessId='+agent.request_.body.originalDetectIntentRequest.payload.conversation.conversationId
    })
  );
 }
