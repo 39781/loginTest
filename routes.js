@@ -18,9 +18,9 @@ router.get('/',function(req,res){
 })
 
 router.post('/botHandler',function(req, res){		
-	reqs[req.body.originalDetectIntentRequest.payload.conversation.conversationId]={}
+	/*reqs[req.body.originalDetectIntentRequest.payload.conversation.conversationId]={}
 	reqs[req.body.originalDetectIntentRequest.payload.conversation.conversationId]['req']=req;	
-	reqs[req.body.originalDetectIntentRequest.payload.conversation.conversationId]['res']=res;
+	reqs[req.body.originalDetectIntentRequest.payload.conversation.conversationId]['res']=res;*/
 	var resp = JSON.parse(JSON.stringify(config.responseObj));	
 	fireResponse(req, res);
 });	
