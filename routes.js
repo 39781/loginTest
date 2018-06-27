@@ -10,7 +10,7 @@ const {WebhookClient} = require('dialogflow-fulfillment');
 const {Text, Card, Suggestion} = require('dialogflow-fulfillment');
 const { SimpleResponse } =require('actions-on-google');
 
-var reqs ={};
+var agents ={};
 
 
 router.get('/',function(req,res){
@@ -26,17 +26,18 @@ router.post('/botHandler',function(req, res){
 });	
 
 var fireResponse = function(req, res){
-	const agent = new WebhookClient({ request:req, response:res });  
-	let intentMap = new Map();
-	
+	var convID = req.body.originalDetectIntentRequest.payload.conversation.conversationId;
+	agents[convID] = new WebhookClient({ request:req, response:res });  
+	let intentMap = new Map();	
 	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);
-	agent.handleRequest(intentMap,{});
+	agents[convID].handleRequest(intentMap);
 }
 
 router.post('/validateUser',function(req, res){
 	console.log(JSON.stringify(req.body));
-	fireResponse(reqs[req.body.sess]['req'],reqs[req.body.sess]['res']);
+	agents[req.body.sess].setFollowupEvent({'name':'loginSuccess','parameters':{}});
+	//fireResponse(reqs[req.body.sess]['req'],reqs[req.body.sess]['res']);
 	//res.end();
 })
 
