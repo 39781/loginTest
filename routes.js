@@ -36,11 +36,34 @@ var fireResponse = function(req, res){
 
 router.post('/validateUser',function(req, res){
 	console.log(JSON.stringify(req.body));
-	agents[req.body.sess].setFollowupEvent({'name':'loginSuccess','parameters':{}});
+	dialogflowAPI('login sucess',req.body.sess);
+	//agents[req.body.sess].setFollowupEvent({'name':'loginSuccess','parameters':{}});
 	//fireResponse(reqs[req.body.sess]['req'],reqs[req.body.sess]['res']);
 	res.end();
 })
 
+var dialogflowAPI = function(input, sessId){		
+	var options = { 
+		method: 'POST',
+		url: config.dialogflowAPI,
+		headers: {
+			"Authorization": "Bearer " + config.accessToken
+		},
+		body:{
+			sessionId: sessId,
+			lang: "en",
+			query:input
+		},			
+		json: true 
+	}; 					
+	request(options, function (error, response, body) {
+		if(error){
+			res.json({error:"error in chat server api call"}).end();
+		}else{						
+			return body;
+		}		
+	});				
+}
 
 
 var welcome = function(agent){
@@ -69,6 +92,31 @@ var loginSuccess = function(agent){
    //  agent.add(new Suggestion(`Quick Reply`));
     // agent.add(new Suggestion(`Suggestion`));
      //agent.setContext({ name: 'weather', lifespan: 2, parameters: { city: 'Rome' }});   
+}
+
+var dialogflowAPI = function(input, sessId){	
+	return new Promise(function(resolve, reject){
+		var options = { 
+			method: 'POST',
+			url: config.dialogflowAPI,
+			headers: {
+				"Authorization": "Bearer " + config.accessToken
+			},
+			body:{
+				sessionId: sessId,
+				lang: "en",
+				query:input
+			},			
+			json: true 
+		}; 					
+		request(options, function (error, response, body) {
+			if(error){
+				res.json({error:"error in chat server api call"}).end();
+			}else{						
+				resolve(body);
+			}		
+		});			
+	});
 }
 
 module.exports = router;
