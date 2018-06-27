@@ -28,18 +28,7 @@ router.post('/botHandler',function(req, res){
 var fireResponse = function(req, res){
 	const agent = new WebhookClient({ request:req, response:res });  
 	let intentMap = new Map();
-	var welcome = function(agent,sessId){
-		console.log('hari');
-		agent.add(new Text({'text': `Welcome to my agent!`, 'ssml': `<speak>Hi<break time='5s'/>Welcome to my agent</speak>` }));
-		agent.add(new Card({
-         title: `Menus`,
-         imageUrl: '',
-         text: ``,
-         buttonText: 'Login',
-         buttonUrl: 'https://logintests.herokuapp.com/login.html?sessId='+sessId
-       })
-     );
-	}
+	
 	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);
 	agent.handleRequest(intentMap);
@@ -52,7 +41,18 @@ router.post('/validateUser',function(req, res){
 
 
 
-
+var welcome = function(agent,sessId){
+	console.log('hari');
+	agent.add(new Text({'text': `Welcome to my agent!`, 'ssml': `<speak>Hi<break time='5s'/>Welcome to my agent</speak>` }));
+	agent.add(new Card({
+	 title: `Menus`,
+	 imageUrl: '',
+	 text: ``,
+	 buttonText: 'Login',
+	 buttonUrl: 'https://logintests.herokuapp.com/login.html?sessId='+sessId
+   })
+ );
+}
 
 var loginSuccess = function(agent){
      agent.add(`user validation sucess`);
