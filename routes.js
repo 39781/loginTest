@@ -58,7 +58,7 @@ var dialogflowAPI = function(input, sessId){
 	}; 					
 	request(options, function (error, response, body) {
 		if(error){
-			res.json({error:"error in chat server api call"}).end();
+			return error;
 		}else{						
 			return body;
 		}		
@@ -94,30 +94,7 @@ var loginSuccess = function(agent){
      //agent.setContext({ name: 'weather', lifespan: 2, parameters: { city: 'Rome' }});   
 }
 
-var dialogflowAPI = function(input, sessId){	
-	return new Promise(function(resolve, reject){
-		var options = { 
-			method: 'POST',
-			url: config.dialogflowAPI,
-			headers: {
-				"Authorization": "Bearer " + config.accessToken
-			},
-			body:{
-				sessionId: sessId,
-				lang: "en",
-				query:input
-			},			
-			json: true 
-		}; 					
-		request(options, function (error, response, body) {
-			if(error){
-				res.json({error:"error in chat server api call"}).end();
-			}else{						
-				resolve(body);
-			}		
-		});			
-	});
-}
+
 
 module.exports = router;
 
