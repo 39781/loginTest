@@ -37,7 +37,7 @@ var fireResponse = function(req, res){
 router.post('/validateUser',function(req, res){
 	console.log(JSON.stringify(req.body));
 	fireResponse(reqs[req.body.sess]['req'],reqs[req.body.sess]['res']);
-	res.json({status:true}).end();
+	//res.end();
 })
 
 

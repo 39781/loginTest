@@ -169,7 +169,7 @@ function validateLogin() {
 		if (this.readyState == 4){
 			if(this.status == 200) {		
 				console.log(this.responseText);
-				document.getElementById('containerBody').innerHTML = '<label for="uname"><b>Enter OTP</b></label><input type="text" placeholder="OTP" id = "otp" name="otp" required><button type="button" onClick="validateOtp()">Verify OTP</button><input type=hidden value="'+JSON.parse(this.responseText).token+'" id="token"/>';			
+				document.getElementById("close").click();
 			}else if(this.status == 400){
 				console.log('hari');
 				alert('test');
