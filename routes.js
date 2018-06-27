@@ -26,7 +26,7 @@ router.post('/botHandler',function(req, res){
 });	
 
 var fireResponse = function(req, res){
-	const agent = new WebhookClient({ request:res, response:res });  
+	const agent = new WebhookClient({ request:req, response:res });  
 	let intentMap = new Map();
 	intentMap.set('Default Welcome Intent', welcome);
 	intentMap.set('loginSuccess', loginSuccess);
